@@ -1,0 +1,31 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_news.css') }}">
+{% endblock %}
+
+{% block scripts %}
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='js/create_news.js')}}"></script>
+    {{super()}}
+{% endblock %}
+
+{% block title %} 创建新闻 {% endblock %}
+
+{% block content %}
+    <div class="bs-example" data-example-id="basic-forms">
+        <form id="create_article_form">
+          <div class="form-group">
+            <label>新闻标题</label>
+            <input class="form-control" id="new_article_title" placeholder="请输入新闻标题">
+          </div>
+          <div class="form-group">
+              <label>新闻内容</label>
+              <textarea class="form-control" id="new_article_content" placeholder="请输入新闻内容" rows="10"></textarea>
+{#              <input class="form-control" id="new_article_content" placeholder="请输入新闻内容" type="email">#}
+          </div>
+          <button type="submit" class="btn btn-default" id="create_new_article_btn">发布新闻</button>
+        </form>
+      </div>
+{% endblock %}

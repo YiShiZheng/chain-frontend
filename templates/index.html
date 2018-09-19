@@ -1,0 +1,154 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block title %} Fresh News {% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-default navbar-inverse" xmlns="http://www.w3.org/1999/html">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Fresh News</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Key Word Of News">
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/createNews">发布新闻</a></li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="body container">
+        <div class="row">
+            <div class="first_col row col-md-8">
+                  {% for news_item in news %}
+                      <div class="news_item row">
+                          <div class="col-md-3">
+                              <img class="news_pic" alt="" src="{{ news_item['img']}}">
+                          </div>
+                          <div class="news col-md-9">
+                              <div class="title_box">
+                                  <a class="news_link" target="_blank" href="{{ news_item['news_link']}}">
+                                      {{ news_item['title']}}
+                                  </a>
+                              </div>
+                              <div>
+                                  <a class="news_link" target="_blank" href="{{ news_item['user']['user_page'] }}">
+                                      <img class="reporter_img" alt="" src="{{ news_item['user']['img'] }}">
+                                  </a>
+                                  <a class="news_link" target="_blank" href="{{ news_item['user']['user_page']}}">
+                                      {{ news_item['user']['nick_name'] }}&nbsp;⋅
+                                  </a>
+                                  <span>{{ news_item['created_at']}}&nbsp;⋅</span>
+                                  <span>{{ news_item['forward_counts']}}转发</span>
+                              </div>
+                          </div>
+                      </div>
+                      <hr/>
+                  {%- endfor %}
+
+                <div class="news_item row">
+                    <div class="col-md-3">
+                        <img class="news_pic" alt="" src="//p9.pstatp.com/list/190x124/pgc-image/15360241463376f68781d3d">
+                    </div>
+                    <div class="news col-md-9">
+                        <div class="title_box">
+                        <a class="news_link" target="_blank" href="/group/6597173978207355405/">
+                            奥运冠军夫妇现状：36岁杜丽当教练，宛如18少女，丈夫想再战奥运
+                        </a>
+                        </div>
+                        <div>
+                            <a class="news_link" target="_blank" ga_event="article_avatar_click" href="/c/user/72519275044/"> <img class="reporter_img" alt="" src="//p4.pstatp.com/large/6eee0001b0fd62c4ccda"> </a>
+                            <a class="news_link" target="_blank" href="/xxx/xxx">nickName1&nbsp;⋅</a>
+                            <span>2018-09-06 12:23:23&nbsp;⋅</span>
+                            <span>120转发</span>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+
+
+                <nav aria-label="Page navigation" class="page_control">
+                    <ul class="pagination">
+                        <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="second_col col-md-4">
+                <div class="hot_module">
+                    <span class="module-head news-head"> 热度新闻 </span>
+                </div>
+
+                <div class="recommand_module">
+                    <span class="module-head news-head"> 热点推荐 </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container-fluid text-center navbar-inverse" id="footer">
+        <div class="copyrights" style="margin-top:25px;">
+            <p>Mossy City © 2016, All Rights Reserved
+                <br>
+                <span>Web Design By: Mike Clark</span></p>
+            <p><a href="https://www.linkedin.com/in/michael-clark-webdeveloper" target="_blank">Linkedin <i
+                    class="fa fa-linkedin-square" aria-hidden="true"></i> </a></p>
+        </div>
+    </footer>
+{% endblock %}

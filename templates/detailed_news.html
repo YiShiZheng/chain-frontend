@@ -1,0 +1,140 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detailed_news.css') }}">
+{% endblock %}
+
+{% block scripts %}
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <script src="{{url_for('static', filename='js/detailed_news.js')}}"></script>
+    {{super()}}
+{% endblock %}
+
+{% block title %} Fresh News {% endblock %}
+.
+{% block navbar %}
+    <nav class="navbar navbar-default navbar-inverse" xmlns="http://www.w3.org/1999/html">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Fresh News</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Key Word Of News">
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div id="left_navbar">
+        <div class="ui vertical large compact menu">
+                <div class="shared_section trace_in_blockchain">
+                    <a href="#comment_area" class="shared_section_link" style="font-size: 30px; color: rgb(248, 89, 89);">
+                        <span class="glyphicon glyphicon-comment" ></span>
+                        <div class="shared_section_text title_text">247</div>
+                    </a>
+                </div>
+                <div class="shared_section trace_in_blockchain">
+                    <a href="/bctrace/2" class="shared_section_link" style="font-size: 30px">
+                        <span class="glyphicon glyphicon-send" ></span>
+                        <div class="shared_section_text title_text">追踪</div>
+                    </a>
+                </div>
+
+                <div class="shared_section sina_section">
+                    <a href="/weibo_forawrd" class="shared_section_link">
+                        <div class="shared_section_icon" style="background-image: url('../static/images/sina.jpg')"></div>
+                        <div class="shared_section_text">微博</div>
+                    </a>
+                </div>
+                <div class="shared_section">
+                    <a href="/qzone_forawrd" class="shared_section_link">
+                        <div class="shared_section_icon" style="background-image: url('../static/images/qzone.jpg')"></div>
+                        <div class="shared_section_text">QZone</div>
+                    </a>
+                </div>
+                <div class="shared_section">
+                    <a href="/wechat_forawrd" class="shared_section_link">
+                        <div class="shared_section_icon" style="background-image: url('../static/images/wechat.jpg')"></div>
+                        <div class="shared_section_text">微信</div>
+                    </a>
+                </div>
+                <div class="shared_section">
+                    <a href="/demo_forawrd" class="shared_section_link">
+                        <div class="shared_section_icon" style="background-image: url('../static/images/wechat.jpg')"></div>
+                        <div class="shared_section_text">demo</div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="page_body container" style="padding-left: 20%">
+        <div class="row">
+            <div class="first_col_of_detailed_news col-md-8">
+                <div class="news_title">《碟中谍6》暴打阿汤哥的东北小伙曾拿武术亚军，本想找搏击手演</div>
+                <div class="news_content">阿汤哥参演碟中谍6，撒；拉东方红； H;L王府井；维护;FO ;L烦恼； ；wLFN;F LN；了； 你；了;SNC.N 阿斯大法阿斯大法</div>
+s            </div>
+
+            <div class="second_col_of_detailed_news col-md-4">
+                <div class="hot_module">
+                    <span class="module-head news-head"> 广告展位1 </span>
+                </div>
+
+                <div class="recommand_module">
+                    <span class="module-head news-head"> 广告展位2 </span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
