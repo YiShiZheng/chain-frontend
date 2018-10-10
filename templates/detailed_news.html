@@ -1,80 +1,14 @@
-{% extends "bootstrap/base.html" %}
-
-{% block styles %}
-    {{ super() }}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8"/>
+    <title>Simple example</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/detailed_news.css') }}">
-{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='editormd/css/editormd.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body>
 
-{% block scripts %}
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-
-    <script src="{{url_for('static', filename='js/detailed_news.js')}}"></script>
-    {{super()}}
-{% endblock %}
-
-{% block title %} Fresh News {% endblock %}
-.
-{% block navbar %}
-    <nav class="navbar navbar-default navbar-inverse" xmlns="http://www.w3.org/1999/html">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Fresh News</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Link</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Key Word Of News">
-                    </div>
-                    <button type="submit" class="btn btn-default">Search</button>
-                </form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Link</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-{% endblock %}
-
-{% block content %}
     <div id="left_navbar">
         <div class="ui vertical large compact menu">
                 <div class="shared_section trace_in_blockchain">
@@ -119,22 +53,40 @@
         </div>
     </div>
 
-    <div class="page_body container" style="padding-left: 20%">
+    <div class="page_body container" style="padding-left: 10%; width: 85%;">
         <div class="row">
-            <div class="first_col_of_detailed_news col-md-8">
-                <div class="news_title">《碟中谍6》暴打阿汤哥的东北小伙曾拿武术亚军，本想找搏击手演</div>
-                <div class="news_content">阿汤哥参演碟中谍6，撒；拉东方红； H;L王府井；维护;FO ;L烦恼； ；wLFN;F LN；了； 你；了;SNC.N 阿斯大法阿斯大法</div>
-s            </div>
-
-            <div class="second_col_of_detailed_news col-md-4">
-                <div class="hot_module">
-                    <span class="module-head news-head"> 广告展位1 </span>
-                </div>
-
-                <div class="recommand_module">
-                    <span class="module-head news-head"> 广告展位2 </span>
+            <div class="first_col_of_detailed_news col-md-12">
+                <div class="news_title">{{ title }}</div>
+                <div class="news_content" id="news_content">
+                    <textarea style="display:none;" name="test-editormd-markdown-doc">{{content}}</textarea>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='editormd/lib/marked.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='editormd/lib/flowchart.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='editormd/lib/jquery.flowchart.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='editormd/lib/raphael.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='editormd/lib/sequence-diagram.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='editormd/lib/underscore.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='editormd/editormd.js') }}"></script>
+    <script src="{{url_for('static', filename='js/detailed_news.js')}}"></script>
+    <script src="{{ url_for('static',filename='editormd/lib/prettify.min.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            testEditor = editormd.markdownToHTML("news_content", {
+                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                emoji: true,
+                taskList: true,
+                tex: true,
+                flowChart: true,
+                sequenceDiagram: true,
+                codeFold: true,
+        });
+        });
+    </script>
+</body>
+</html>
