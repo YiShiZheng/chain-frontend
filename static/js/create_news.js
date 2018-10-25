@@ -1,6 +1,5 @@
 
 $("#create_new_article_btn").click(function(){
-    // var newsHtml = $(".editormd-html-textarea").val();
     var newsHtml = $(".editormd-markdown-textarea").val();
     var newsTitle = $("input").val();
     console.error(newsTitle);
@@ -26,12 +25,3 @@ $("#create_new_article_btn").click(function(){
         }
     });
 });
-
-// function displayInverval(currentSec){
-//     if (currentSec >= 1){
-//       $("#response-to-create").text('创建成功!'+ (currentSec-1) + '秒之后跳转到主页面');
-//       setTimeout('displayInverval('+ (currentSec-1) + ')', 1000)
-//     }else{
-//         window.location = 'http://127.0.0.1:5000/';
-//     }
-// };
