@@ -9,10 +9,12 @@
 <body>
     <form>
         <div id="news-title-group">
-            <input class="form-control input-lg" id="news-title-input" type="text" placeholder="请输入新闻标题">
+            <input class="form-control input-lg" id="news-title-input" type="text" placeholder="请输入新闻标题" value="{{ title }}">
         </div>
-        <div id="editormd" class="form-control"></div>
-        <button type="submit" id="create_new_article_btn" class="btn btn-block">提交</button>
+        <div id="editormd" class="form-control">
+            <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" style="display: none;">{{ raw_data}}</textarea>
+        </div>
+        <button type="submit" id="create_news_btn" class="btn btn-block">{{ btn_name }}</button>
     </form>
     <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static',filename='editormd/editormd.min.js') }}"></script>
@@ -23,7 +25,7 @@
         $(function () {
             testEditor = editormd("editormd", {
                 width: "80%",
-                height: 640,
+                height: "70em",
                 syncScrolling: "single",
                 path: "{{ url_for('static',filename='editormd/lib/') }}",
                 saveHTMLToTextarea : true,

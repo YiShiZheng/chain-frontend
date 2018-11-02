@@ -18,36 +18,36 @@
                     </a>
                 </div>
                 <div class="shared_section trace_in_blockchain">
-                    <a href="/bctrace/2" class="shared_section_link" style="font-size: 30px">
-                        <span class="glyphicon glyphicon-send" ></span>
+                    <a href="javascript:void(0)" class="shared_section_link" style="font-size: 30px" onclick="traceNews()">
+                        <span class="glyphicon glyphicon-search text-info" ></span>
                         <div class="shared_section_text title_text">追踪</div>
                     </a>
                 </div>
                 <div class="shared_section">
-                    <a href="/forwardNews" class="shared_section_link">
+                    <a href="javascript:void(0);" class="shared_section_link" onclick="forwardNews()">
                         <div class="shared_section_icon" style="background-image: url('../static/images/wechat.jpg')"></div>
                         <div class="shared_section_text">转发</div>
                     </a>
                 </div>
 
-                <div class="shared_section sina_section">
-                    <a href="/weibo_forawrd" class="shared_section_link">
-                        <div class="shared_section_icon" style="background-image: url('../static/images/sina.jpg')"></div>
-                        <div class="shared_section_text">微博</div>
-                    </a>
-                </div>
-                <div class="shared_section">
-                    <a href="/qzone_forawrd" class="shared_section_link">
-                        <div class="shared_section_icon" style="background-image: url('../static/images/qzone.jpg')"></div>
-                        <div class="shared_section_text">QZone</div>
-                    </a>
-                </div>
-                <div class="shared_section">
-                    <a href="/wechat_forawrd" class="shared_section_link">
-                        <div class="shared_section_icon" style="background-image: url('../static/images/wechat.jpg')"></div>
-                        <div class="shared_section_text">微信</div>
-                    </a>
-                </div>
+{#                <div class="shared_section sina_section">#}
+{#                    <a href="/weibo_forawrd" class="shared_section_link">#}
+{#                        <div class="shared_section_icon" style="background-image: url('../static/images/sina.jpg')"></div>#}
+{#                        <div class="shared_section_text">微博</div>#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="shared_section">#}
+{#                    <a href="/qzone_forawrd" class="shared_section_link">#}
+{#                        <div class="shared_section_icon" style="background-image: url('../static/images/qzone.jpg')"></div>#}
+{#                        <div class="shared_section_text">QZone</div>#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="shared_section">#}
+{#                    <a href="/wechat_forawrd" class="shared_section_link">#}
+{#                        <div class="shared_section_icon" style="background-image: url('../static/images/wechat.jpg')"></div>#}
+{#                        <div class="shared_section_text">微信</div>#}
+{#                    </a>#}
+{#                </div>#}
             </div>
 
         </div>
@@ -75,6 +75,9 @@
     <script src="{{ url_for('static',filename='editormd/editormd.js') }}"></script>
     <script src="{{url_for('static', filename='js/detailed_news.js')}}"></script>
     <script src="{{ url_for('static',filename='editormd/lib/prettify.min.js') }}"></script>
+
+    <script src="{{ url_for('static',filename='js/detailed_news.js') }}"></script>
+
     <script type="text/javascript">
         $(function () {
             testEditor = editormd.markdownToHTML("news_content", {

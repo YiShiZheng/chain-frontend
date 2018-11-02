@@ -10,14 +10,16 @@ import os
 class news_item:
     def __init__(self, **kwargs):
         self._id = kwargs['id']
+        self._index_img_name = 'images/ericsson_loggo.png'
         self._link_to_detailed_info_page = 'news/{}'.format(self._id)
         self._img = '//p9.pstatp.com/list/190x124/pgc-image/15360241463376f68781d3d'
+        self._action = kwargs['action']
         self._hash = kwargs.get('hash')
         self._created_at = kwargs.get('timestamp')
         self._forward_counts = 120
         self._user_info = {
             'img': '//p4.pstatp.com/large/6eee0001b0fd62c4ccda',
-            'nick_name': unicode('新华社', "utf8"),
+            'nick_name': kwargs['uid'],
             'user_page': 'xx/xx'
         }
 
@@ -47,15 +49,23 @@ class news_item:
             pwd = os.getcwd()
             for img_name in imgs_data:
                 complete_path = os.path.join(pwd, 'static', 'uploadedImgs', img_name)
-                img_data = base64.b64decode(imgs_data[img_name])
-                with open(complete_path, "wb") as output_file:
-                    output_file.write(img_data)
+                if not os.path.exists(complete_path):
+                    img_data = base64.b64decode(imgs_data[img_name])
+                    with open(complete_path, "wb") as output_file:
+                        output_file.write(img_data)
+                self._index_img_name = 'uploadedImgs/' + img_name
         else:
             self._title = kwargs.get('newsTitle')
             self._contnt = kwargs.get('newsHtml')
 
+    def get_id(self):
+        return self._id
+
     def get_news_link(self):
         return self._link_to_detailed_info_page
+
+    def get_hash(self):
+        return self._hash
 
     def get_img(self):
         return self._img
@@ -74,6 +84,12 @@ class news_item:
 
     def get_user(self):
         return self._user_info
+
+    def get_action(self):
+        return self._action
+
+    def get_index_img_name(self):
+        return self._index_img_name
 
 
 if __name__ == "__main__":

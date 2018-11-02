@@ -1,16 +1,18 @@
-.first_col {
-    width: 65%;
+#first_col {
+    /*width: 65%;*/
     display: inline-block;
-
+    margin-left: 1em;
+    margin-right: 1.5em;
 }
 
-.second_col {
-    width: 35%;
+#second_col {
+    /*width: 35%;*/
     display: inline-block;
 }
 
 .news_impression {
-    height: 100%;
+    height: 6em;
+    text-align: center;
 }
 
 .news {
@@ -22,14 +24,18 @@
 }
 
 .news_pic {
-    /*width: 156px;*/
-    width: 100%;
+    width: auto ;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    padding-top: 1em;
+    padding-left: 1em;
 }
 
 .title_box{
     padding-top: 2%;
     padding-bottom: 1%;
-    font-size: 150%;
+    font-size: 1.3em;
     line-height: 100%;
     font-weight: bold;
     height: 190%;
@@ -45,19 +51,10 @@
     width: 5%;
 }
 
-a:link {color: black; text-decoration: none;}
-a:visited {color: grey; text-decoration: none;}
-a:hover {color: #406599; text-decoration: none;}
+.box a:link {color: black; text-decoration: none;}
+.box a:visited {color: grey; text-decoration: none;}
+.box a:hover {color: #406599; text-decoration: none;}
 
-
-.hot_module {
-    width: 100%;
-    height: 50%;
-    border-top: 2px solid #ed4040;
-    background-color: #f4f5f6;
-    margin-bottom: 16px;
-    padding: 15px 20px 20px;
-}
 
 .module-head.news-head {
     color: #222;
@@ -67,11 +64,385 @@ a:hover {color: #406599; text-decoration: none;}
     font-weight: 700;
 }
 
-.recommand_module {
-    width: 100%;
-    height: 50%;
-    border-top: 2px solid #ed4040;
+.box {
+    padding: 3px;
+    margin-bottom: 10px;
     background-color: #f4f5f6;
-    margin-bottom: 16px;
-    padding: 15px 20px 20px;
+}
+
+.main_box {
+    padding: 3px;
+    margin-bottom: 10px;
+    border-radius:5px;
+    border: #ddd solid 1px;
+    /*background-color: #f4f5f6;*/
+}
+
+.section-summary[data-v-33c84e3a] {
+    background: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    transition-duration: .3s;
+    margin-bottom: 3em;
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+}
+
+.roll-container .roll-num .roll-num-inner {
+    height: 100%;
+    transition-duration: 1s;
+}
+
+.roll-container .roll-num>div {
+    width: 100%;
+}
+
+.roll-container .roll-num {
+    display: inline-block;
+    height: 100%;
+    margin-left: 3px;
+    padding: 0 10px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    background-image: url(/static/images/num-bg.8f6d6df.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.font-bebas[data-v-33c84e3a] {
+    font-family: bebas;
+    font-size: 20px;
+    color: #3c4463;
+}
+
+.section-summary .title[data-v-33c84e3a] {
+    color: #9d9faf;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.section-summary[data-v-33c84e3a]:hover {
+    box-shadow: 0 0 15px #ccc;
+}
+
+.section-summary hr[data-v-33c84e3a] {
+    border-color: #e0e0e0;
+    margin: 20px -20px;
+}
+
+hr {
+    height: 0;
+    box-sizing: content-box;
+}
+
+.roll-container {
+    overflow: hidden;
+    font-family: bebas;
+}
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+.panel-heading {
+    border: 1px solid #ddd;
+    padding: 15px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.dataTables_wrapper {
+    border: 1px solid #ddd;
+}
+
+#hot_news:hover {
+    box-shadow: 0 0 15px #ccc;
+}
+
+#example {
+    border-bottom-color: #ddd;
+}
+
+#example_wrapper table.dataTable thead th, #example_wrapper table.dataTable thead td {
+    border-color: #ddd;
+}
+
+
+
+
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 20%;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+#edu-container .edu-bgimg {
+    height: 300px;
+    text-align: center;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+#edu-container .edu-bgimg img {
+    height: 300px;
+    width: 100%;
+}
+
+.edt-index-container .edu-bgimg {
+    position: relative;
+}
+
+#edu-container {
+    background-color: #fff;
+    box-shadow: 0 3px 20px 0 hsla(0,0%,93%,.004);
+    margin-top: -1.5em;
+}
+
+.edt-index-container .bg-content {
+    top: 15%;
+    color: #fff;
+    text-align: center;
+    z-index: 1;
+}
+
+.edt-index-container .bg-content, .edt-index-container .bg-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+nav .container-fluid {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10%;
+    margin-right: 20%;
+}
+
+#content-row.row {
+    margin-top: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 98%
+}
+
+.footer {
+    padding-top: 3em;
+    margin-top: 3em;
+    background: #333;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.copyright {
+    height: 50px;
+    margin-top: 20px;
+    color: #666;
+    background: #171919;
+    line-height: 50px;
+}
+
+.row-1 {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.navbar li:hover {
+    color: #08bf91;
+    background: none;
+}
+
+#brand:hover{
+    color: #08bf91;
+    background: none;
+}
+/*.navbar>li.active a, .home-header .navbar>li.active a:focus, .home-header .navbar>li.active a:hover {*/
+    /*color: #08bf91;*/
+    /*background: none;*/
+/*}*/
+
+ul.navbar-nav>li>a:hover {
+    color: #08bf91 !important;
+    background: none !important;
+}
+
+div.container-fluid a{
+    font-size: 18px;
+}
+
+div.container-fluid a.navbar-brand {
+    font-size: 20px;
+}
+
+.footer-col .col-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: hsla(0,0%,100%,.5);
+    margin-bottom: 1em;
+    margin-top: -0.5em;
+}
+
+.footer-col a {
+    display: inline-block;
+    margin-bottom: 3px;
+    color: #999;
+    font-size: 14px;
+}
+
+.footer-col a:focus, .footer-col a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.copyright a {
+    color: #777;
+}
+
+.footer-col .footer-slogan {
+    margin: 0 0 12px 15px;
+    color: #0c9;
+    font-size: 28px;
+    margin-top: -1em;
 }

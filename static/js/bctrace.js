@@ -1,3 +1,13 @@
 $(document).ready( function () {
-    $('#table_id_example').DataTable();
+        $('#example').dataTable( {
+        paging:   false,
+        ordering: false,
+        info:     false,
+        searching:   false,
+        border:     true,
+  } );
 } )
+
+function tryToDisplayMoreTracedRows() {
+        alert('没有更多历史数据.');
+}

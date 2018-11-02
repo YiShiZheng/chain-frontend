@@ -1,34 +1,60 @@
-
-
+<!DOCTYPE html>
+<html lang="zh">
 <head>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <meta charset="utf-8"/>
+    <title>Simple example</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bctrace.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}">
 
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="{{ url_for('static',filename='js/bctrace.js') }}"></script>
 </head>
 <body>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-{#    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>#}
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready( function () {
-    $('#table_id_example').DataTable();
-} )
-    </script>
-    <table id="table_id_example" class="display">
+    <div id="trace_news" class="panel-ranking">
+        <div data-v-33c84e3a="" class="panel-heading">
+            <span class="glyphicon glyphicon-th-list text-primary" ></span>
+            <span data-v-33c84e3a="" class="fa fa-fw gxicon gxicon-rank">&nbsp;正在追踪</span>
+            <a href="../news/2">标题</a>
+        </div>
+        <table id="example" class="row-border" cellspacing="0">
         <thead>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
+                <th>新闻</th>
+                <th>作者</th>
+                <th>是否修改</th>
+                <th>创建时间</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Row 1 Data 1</td>
-                <td>Row 1 Data 2</td>
-            </tr>
-            <tr>
-                <td>Row 2 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
+            {% for news_item in traced_news %}
+                <tr>
+                    <td>
+                        <a href="{{ news_item['link']}}">{{ news_item['title'] }}</a>
+                    </td>
+                    <td>{{ news_item['uid'] }}</td>
+                    <td>
+                        {% if news_item['action'] == 'create' %}
+                            <span class="badge badge-info" style="background-color:#d9534f">原创</span>
+                        {% elif news_item['action'] == 'forward' %}
+                            <span class="badge badge-info" style="background-color:#5bc0de">转发</span>
+                        {% elif news_item['action'] == 'modify' %}
+                            <span class="badge badge-info" style="background-color:#f0ad4e">修改</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ news_item['created_at'] }}</td>
+                </tr>
+            {%- endfor %}
         </tbody>
     </table>
+        <div data-v-33c84e3a="" class="footer">
+            <a data-v-33c84e3a="" href="javascript:void(0);" onclick="tryToDisplayMoreTracedRows()">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+                <i data-v-33c84e3a="" class="fa fa-angle-double-down"></i>
+            </a>
+        </div>
+    </div>
 </body>
+</html>

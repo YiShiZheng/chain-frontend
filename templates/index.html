@@ -1,45 +1,38 @@
-{% extends "bootstrap/base.html" %}
-
-{% block styles %}
-    {{ super() }}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8"/>
+    <title>Simple example</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}">
 
-{% block title %} 今日头条 {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="{{ url_for('static',filename='js/index.js') }}"></script>
+</head>
+<body>
 
-{% block navbar %}
-    <nav class="navbar navbar-default navbar-inverse" xmlns="http://www.w3.org/1999/html">
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<div id="main">
+<div id="top-nav-bar">
+    <nav class="navbar navbar-default" xmlns="http://www.w3.org/1999/html">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">今日头条</a>
-            </div>
+            <a class="navbar-brand" id="brand" href="javascript:void(0);" onclick="openNav()">关于我们</a>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">天气 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">投诉建议</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">头条产品 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="#">注册</a></li>
+                    <li><a href="#">登录</a></li>
                 </ul>
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
@@ -48,34 +41,33 @@
                     <button type="submit" class="btn btn-default">Search</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="javascript:void(0)" onclick="onlyOrigin()">原创</a></li>
+                    <li><a href="javascript:void(0)" onclick="onlyForward()">转发</a></li>
+                    <li><a href="javascript:void(0)" onclick="noFilter()">所有</a></li>
                     <li><a href="/createNews">发布新闻</a></li>
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">登录/注册 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-{% endblock %}
+</div>
 
-{% block content %}
-    <div class="body container">
-        <div class="row">
-            <div class="first_col row col-md-8">
-                  {% for news_item in news %}
+<div class="body">
+<div id="edu-container">
+    <div class="edu-bgimg">
+        <img src="https://dn-simplecloud.shiyanlou.com/uid/c4ca4238a0b923820dcc509a6f75849b/1515735896264.png">
+        <div class="bg-content">
+        </div>
+    </div>
+</div>
+    <div class="row" id="content-row">
+        <div class="first_col row col-md-6" id="first_col">
+              {% for news_item in news %}
+                  <div {% if news_item['action'] == 'create' %} class="box create" {% else %} class="box forward" {% endif %}>
                       <div class="news_item row">
-                          <div class="news_impression col-md-3">
-                              <img class="news_pic" alt="" src="{{ news_item['img']}}">
+                          <div class="news_impression col-md-2">
+                              <img class="news_pic" alt="" src="{{ url_for('static', filename=news_item['index_img']) }}">
                           </div>
-                          <div class="news col-md-9">
+                          <div class="news col-md-10">
                               <div class="title_box">
                                   <a class="news_link" target="_blank" href="{{ news_item['news_link']}}">
                                       {{ news_item['title']}}
@@ -88,46 +80,111 @@
                                   <a class="news_link" target="_blank" href="{{ news_item['user']['user_page']}}">
                                       {{ news_item['user']['nick_name'] }}&nbsp;⋅
                                   </a>
-                                  <span>{{ news_item['created_at']}}&nbsp;⋅</span>
-                                  <span>{{ news_item['forward_counts']}}转发</span>
+                                  <span>{{ news_item['created_at']}}</span>
+                                  {% if news_item['action'] == 'create' %}
+                                      <span class="badge badge-info" style="background-color: #d9534f">原创</span>
+                                  {% elif news_item['action'] == 'forward' %}
+                                      <span class="badge badge-info" style="background-color: #d9534f">转发</span>
+                                  {% elif news_item['action'] == 'modify' %}
+                                      <span class="badge badge-info" style="background-color: #d9534f">转发且修改</span>
+                                  {% endif %}
                               </div>
                           </div>
                       </div>
-                      <hr/>
-                  {%- endfor %}
+                  </div>
+{#                      <hr/>#}
+              {%- endfor %}
 
-                <nav aria-label="Page navigation" class="page_control">
-                    <ul class="pagination">
-                        <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-                    </ul>
-                </nav>
-            </div>
+            <nav aria-label="Page navigation" class="page_control">
+                <ul class="pagination">
+                    <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                </ul>
+            </nav>
 
-            <div class="second_col col-md-4">
-                <div class="hot_module">
-                    <span class="module-head news-head"> 热度新闻 </span>
+        </div>
+        <div class="second_col col-md-5" id="second_col">
+            <div data-v-33c84e3a="" class="section-summary"><div data-v-33c84e3a="" class="row"><div data-v-33c84e3a="" class="col-md-12"><div data-v-33c84e3a="" class="title">新闻总数</div> <div data-v-33c84e3a="" class="roll-container" style="height: 50px; font-size: 40px; color: #333; margin-left: 1.5em;"><div class="roll-num" style="line-height: 50px;"><div class="roll-num-inner" style="transform: translateY(-250px);"><div>0</div> <div>1</div> <div>2</div> <div>3</div> <div>4</div> <div>5</div> <div>6</div> <div>7</div> <div>8</div> <div>9</div></div></div><div class="roll-num" style="line-height: 50px;"><div class="roll-num-inner" style="transform: translateY(-400px);"><div>0</div> <div>1</div> <div>2</div> <div>3</div> <div>4</div> <div>5</div> <div>6</div> <div>7</div> <div>8</div> <div>9</div></div></div><div class="roll-num" style="line-height: 50px;"><div class="roll-num-inner" style="transform: translateY(-450px);"><div>0</div> <div>1</div> <div>2</div> <div>3</div> <div>4</div> <div>5</div> <div>6</div> <div>7</div> <div>8</div> <div>9</div></div></div><div class="roll-num" style="line-height: 50px;"><div class="roll-num-inner" style="transform: translateY(-400px);"><div>0</div> <div>1</div> <div>2</div> <div>3</div> <div>4</div> <div>5</div> <div>6</div> <div>7</div> <div>8</div> <div>9</div></div></div><div class="roll-num" style="line-height: 50px;"><div class="roll-num-inner" style="transform: translateY(-350px);"><div>0</div> <div>1</div> <div>2</div> <div>3</div> <div>4</div> <div>5</div> <div>6</div> <div>7</div> <div>8</div> <div>9</div></div></div><div class="roll-num" style="line-height: 50px;"><div class="roll-num-inner" style="transform: translateY(-450px);"><div>0</div> <div>1</div> <div>2</div> <div>3</div> <div>4</div> <div>5</div> <div>6</div> <div>7</div> <div>8</div> <div>9</div></div></div></div></div></div> <hr data-v-33c84e3a=""> <div data-v-33c84e3a="" class="row"><div data-v-33c84e3a="" class="col-sm-5"><p data-v-33c84e3a="" class="title">区块数</p> <div data-v-33c84e3a="" class="font-bebas" id="block-count">1,049,038</div></div> <div data-v-33c84e3a="" class="col-sm-7" id="running_time"><p data-v-33c84e3a="" class="title">运行时间</p> <div data-v-33c84e3a="" class="font-bebas" id="running-time">502天 20时 21分 42秒</div></div></div></div>
+
+            <div id="hot_news">
+                <div data-v-33c84e3a="" class="panel-heading"><span data-v-33c84e3a="" class="fa fa-fw gxicon gxicon-rank"></span>&nbsp;24h最热
+                    <span class="glyphicon glyphicon-fire text-danger" ></span>
                 </div>
-
-                <div class="recommand_module">
-                    <span class="module-head news-head"> 热点推荐 </span>
-                </div>
+                <table id="example" class="row-border" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>新闻</th>
+                        <th>创建时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for news_item in hot_news %}
+                        <tr>
+                            <td>
+                                {% if news_item['action'] == 'create' %}
+                                    <span class="badge badge-info" style="background-color:#d9534f">原创</span>
+                                {% else %}
+                                    <span class="badge badge-info">转发</span>
+                                {% endif %}
+                                <a href="{{ news_item['link']}}">{{ news_item['title'] }}</a>
+                            </td>
+                            <td>{{ news_item['created_at'] }}</td>
+                        </tr>
+                    {%- endfor %}
+                </tbody>
+            </table>
             </div>
         </div>
     </div>
+</div>
+</div>
 
-{#    <footer class="container-fluid text-center navbar-inverse" id="footer">#}
-{#        <div class="copyrights" style="margin-top:25px;">#}
-{#            <p>Mossy City © 2016, All Rights Reserved#}
-{#                <br>#}
-{#                <span>Web Design By: Mike Clark</span></p>#}
-{#            <p><a href="https://www.linkedin.com/in/michael-clark-webdeveloper" target="_blank">Linkedin <i#}
-{#                    class="fa fa-linkedin-square" aria-hidden="true"></i> </a></p>#}
-{#        </div>#}
-{#    </footer>#}
-{% endblock %}
+<div class="footer">
+    <div class="container">
+        <div class="row-1">
+            <div class="col-md-6 clearfix footer-col" style="margin-left: 3em; margin-right: 6em">
+                <img src="{{ url_for('static', filename='images/ericsson_footer.png') }}" style="background-color: #333; height: 100px; weight:100px; margin-top: -1em; padding-left: 4em; margin-top: -1em">
+                <div class="footer-slogan">Ericsson Innovation</div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col" >
+                <div class="col-title">公司</div>
+                <a href="https://www.shiyanlou.com/aboutus" target="_blank">关于我们</a><br>
+                <a href="https://www.shiyanlou.com/contact" target="_blank">联系我们</a><br>
+                <a href="http://www.simplecloud.cn/jobs.html" target="_blank">加入我们</a><br>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">合作</div>
+                <a href="https://www.shiyanlou.com/contribute" target="_blank">我要投稿</a><br>
+                <a href="https://www.shiyanlou.com/friends" target="_blank">友情链接</a><br>
+                <a href="https://www.shiyanlou.com/developer" target="_blank">开发者</a><br>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">服务</div>
+                <a href="https://www.shiyanlou.com/saas" target="_blank">企业版</a><br>
+                <a href="https://www.shiyanlou.com/faq" target="_blank">常见问题</a><br>
+                <a href="https://www.shiyanlou.com/privacy" target="_blank">隐私条款</a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center copyright">
+        <span>Copyright @2013-2018 Ericsson Innovation</span>
+        <span class="ver-line"> | </span>
+        <a href="http://www.miibeian.gov.cn/" target="_blank">蜀ICP备13019762号</a>
+    </div>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-89338452-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+</div>
+
+</body>
+</html>

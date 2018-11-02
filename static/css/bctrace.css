@@ -1,4 +1,43 @@
-.loading {
-    width: 500px;
-    height: 500px;
+#example {
+    border-bottom-color: #ddd;
+}
+
+#example_wrapper table.dataTable thead th, #example_wrapper table.dataTable thead td {
+    border-color: #ddd;
+}
+
+.panel-heading {
+    border: 1px solid #ddd;
+    padding: 15px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.dataTables_wrapper {
+    border: 1px solid #ddd;
+}
+
+#trace_news:hover {
+    box-shadow: 0 0 15px #ccc;
+}
+
+#trace_news {
+    margin-top: 4em;
+    margin-left: 4em;
+    margin-right: 4em;
+}
+
+.panel-ranking .footer[data-v-33c84e3a] {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 20px;
+    border: 1px solid #ddd;
+}
+
+.panel-ranking .footer a[data-v-33c84e3a] {
+    color: #999;
+}
+
+.panel-ranking .footer a[data-v-33c84e3a] {
+    color: #999;
 }
